@@ -16,11 +16,11 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route element={<Authorized token={token} />}>
           <Route path="/categories" element={<CategoryList />} /> {/* Use CategoryList component */}
           {/* Add other nested routes here */}
+          <Route path="/tags">
+          </Route>
+            <Route index element={<TagList />} /><Route path="/newpost" element={< PostForm />} />
         </Route>
-        <Route path="/tags">
-        <Route index element={<TagList />} /><Route path="/newpost" element={< PostForm />}/>
-      </Route>
-    </Routes>
+      </Routes>
     </>
   );
 };
