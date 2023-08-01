@@ -11,3 +11,16 @@
     padding: 0.5rem 1rem;
     border: 1px solid goldenrod;
 }
+
+.tag-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.footer-button {
+    padding: 0.2rem 1rem;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
