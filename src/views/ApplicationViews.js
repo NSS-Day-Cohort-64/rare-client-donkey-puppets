@@ -1,17 +1,21 @@
-import { Route, Routes } from "react-router-dom"
-import { Login } from "../components/auth/Login"
-import { Register } from "../components/auth/Register"
-import { Authorized } from "./Authorized"
+import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "../components/auth/Login";
+import { Register } from "../components/auth/Register";
+import { Authorized } from "./Authorized";
+import CategoryList from "../components/categories/CategoryList"; // Import the CategoryList component
 
 export const ApplicationViews = ({ token, setToken }) => {
-  return <>
-    <Routes>
-      <Route path="/login" element={<Login setToken={setToken} />}  />
-      <Route path="/register" element={<Register setToken={setToken} />}  />
-      <Route element={<Authorized token={token} />}>
-        {/* Add Routes here */}
-        
-      </Route>
-    </Routes>
-  </>
-}
+  return (
+    <>
+      <Routes>
+        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/register" element={<Register setToken={setToken} />} />
+        <Route element={<Authorized token={token} />}>
+          <Route path="/categories" element={<CategoryList />} /> {/* Use CategoryList component */}
+          {/* Add other nested routes here */}
+        </Route>
+      </Routes>
+    </>
+  );
+};
