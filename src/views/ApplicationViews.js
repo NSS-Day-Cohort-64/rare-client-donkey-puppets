@@ -6,9 +6,8 @@ import { Authorized } from "./Authorized";
 import CategoryList from "../components/categories/CategoryList";
 import { TagContainer } from "../components/tag/TagContainer";
 import { Posts } from "../components/posts/Posts"
-import CategoryList from "../components/categories/CategoryList"; // Import the CategoryList component
-import { TagList } from "../components/tag/TagList"
 import { PostForm } from "../components/posts/PostForm"
+
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
@@ -20,13 +19,6 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route element = {<Posts />} path="/posts"/>
         <Route path="/newpost" element={< PostForm />} />
         <Route path="/tags" element={ <TagContainer /> } />
-          <Route path="/categories" element={<CategoryList />} />
-          <Route path="/tags" element={ <TagContainer /> } />
-          <Route path="/categories" element={<CategoryList />} /> {/* Use CategoryList component */}
-          {/* Add other nested routes here */}
-          <Route path="/tags">
-          </Route>
-            <Route index element={<TagList />} /><Route path="/newpost" element={< PostForm />} />
         </Route>
       </Routes>
     </>

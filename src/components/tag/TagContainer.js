@@ -12,7 +12,7 @@ export const TagContainer = () => {
 
   return (
     <>
-      <TagList tags={tags} /> {/* Pass the tags state to TagList */}
+      <TagList tags={tags} setTags={setTags} /> {/* Pass the tags state to TagList */}
       <CreateTag tags={tags} setTags={setTags} createTag={createTag} />
     </>
   );
