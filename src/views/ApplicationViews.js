@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "../components/auth/Login";
 import { Register } from "../components/auth/Register";
 import { Authorized } from "./Authorized";
+import CategoryList from "../components/categories/CategoryList";
+import { TagContainer } from "../components/tag/TagContainer";
 import CategoryList from "../components/categories/CategoryList"; // Import the CategoryList component
 import { Posts } from "../components/posts/Posts"
 import { PostForm } from "../components/posts/PostForm"
@@ -16,8 +18,8 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route element={<Authorized token={token} />}>
         <Route path="/categories" element={<CategoryList />} /> 
         <Route element = {<Posts />} path="/posts"/>
-        <Route path="/tags" element={<TagList />} />
         <Route path="/newpost" element={< PostForm />} />
+        <Route path="/tags" element={ <TagContainer /> } />
         </Route>
       </Routes>
     </>
