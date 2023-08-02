@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import { getAllPosts } from "../../managers/PostManager"
-import {Post} from "./Post"
-import "./posts.css"
+import React, { useEffect, useState } from "react";
+import { getAllPosts } from "../../managers/PostManager";
+import { Post } from "./Post";
+
 export const Posts = () => {
     const [allPosts, setPosts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
