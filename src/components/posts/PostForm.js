@@ -12,6 +12,7 @@ export const PostForm = () => {
         category_id: 0,
         title: "",
         publication_date: "",
+        image_url: null,
         content: "",
         approved: true
 
@@ -43,6 +44,7 @@ export const PostForm = () => {
             user_id: localUserObject,
             title: post.title,
             publication_date: post.publication_date,
+            image_url: post.image_url,
             content: post.content,
             approved: post.approved
         }

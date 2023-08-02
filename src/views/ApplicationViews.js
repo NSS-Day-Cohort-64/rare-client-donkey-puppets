@@ -5,10 +5,8 @@ import { Register } from "../components/auth/Register";
 import { Authorized } from "./Authorized";
 import CategoryList from "../components/categories/CategoryList";
 import { TagContainer } from "../components/tag/TagContainer";
-import CategoryList from "../components/categories/CategoryList"; // Import the CategoryList component
 import { Posts } from "../components/posts/Posts"
 import { PostForm } from "../components/posts/PostForm"
-import { TagList } from "../components/tag/TagList"
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
