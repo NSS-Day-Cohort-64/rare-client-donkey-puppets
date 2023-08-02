@@ -28,16 +28,23 @@ export const MyPosts = () => {
 
     // Function to handle the delete button click
     const handleDeleteButtonClick = (postId) => {
-        // Call the API to delete the post on the server-side
-        fetch(`http://localhost:8088/posts/${postId}`, {
-            method: "DELETE"
-        })
+        // Show the confirmation dialog
+        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+
+        if (confirmDelete) {
+            // Call the API to delete the post on the server-side
+            fetch(`http://localhost:8088/posts/${postId}`, {
+                method: "DELETE"
+            })
             .then(() => {
                 // If the post is successfully deleted, update the posts list
                 setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
             })
             .catch((error) => console.error("Error deleting post:", error));
-    };
+
+        };
+
+        }
 
 
 
