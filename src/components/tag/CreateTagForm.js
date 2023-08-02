@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { createTag } from "../../managers/tags";
 
-export const CreateTag = () => {
+export const CreateTag = ({ tags, setTags }) => {
   const [tagName, setTagName] = useState('');
 
   const handleFormSubmit = (event) => {
@@ -10,21 +11,15 @@ export const CreateTag = () => {
     const newTag = { label: tagName };
 
     // Send a POST request to add the new tag
-    fetch('http://localhost:8088/tags', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTag),
-    })
-      .then((response) => response.json())
+    createTag(newTag)
       .then((data) => {
+        setTags([...tags, data])
         setTagName('');
       });
   };
 
   return (
-    <div className="is-flex is-justify-content-flex-end mr-5 mt-5">
+    <div className="is-flex is-justify-content-flex-end">
       <div className="box">
         <h2>Create New Tag</h2>
         <form onSubmit={handleFormSubmit}>
