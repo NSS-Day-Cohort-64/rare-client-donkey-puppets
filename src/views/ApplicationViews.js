@@ -3,9 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from "../components/auth/Login";
 import { Register } from "../components/auth/Register";
 import { Authorized } from "./Authorized";
-import CategoryList from "../components/categories/CategoryList";
+import { CategoryList } from "../components/categories/CategoryList";
 import { TagContainer } from "../components/tag/TagContainer";
-import CategoryList from "../components/categories/CategoryList"; // Import the CategoryList component
 import { TagList } from "../components/tag/TagList"
 import { PostForm } from "../components/posts/PostForm"
 
