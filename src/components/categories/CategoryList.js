@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CategoryForm from "./CategoryForm";
+import { getCategories } from "../../managers/categories";
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8088/categories/")
-      .then((response) => response.json())
-      .then((data) => setCategories(data));
-  }, [categories]);
+    getCategories().then( data => setCategories(data))
+    },[])
 
   const handleAddCategory = (newCategory) => {
     fetch("http://localhost:8088/categories/", {

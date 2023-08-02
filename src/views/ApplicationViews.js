@@ -5,9 +5,10 @@ import { Register } from "../components/auth/Register";
 import { Authorized } from "./Authorized";
 import { CategoryList } from "../components/categories/CategoryList";
 import { TagContainer } from "../components/tag/TagContainer";
+import { Posts } from "../components/posts/Posts"
+import CategoryList from "../components/categories/CategoryList"; // Import the CategoryList component
 import { TagList } from "../components/tag/TagList"
 import { PostForm } from "../components/posts/PostForm"
-
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
@@ -15,6 +16,10 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route element={<Authorized token={token} />}>
+        <Route path="/categories" element={<CategoryList />} /> 
+        <Route element = {<Posts />} path="/posts"/>
+        <Route path="/newpost" element={< PostForm />} />
+        <Route path="/tags" element={ <TagContainer /> } />
           <Route path="/categories" element={<CategoryList />} />
           <Route path="/tags" element={ <TagContainer /> } />
           <Route path="/categories" element={<CategoryList />} /> {/* Use CategoryList component */}
