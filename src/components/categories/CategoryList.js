@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Category } from "./Category";
 import CategoryForm from "./CategoryForm";
 import { getCategories } from "../../managers/categories";
+
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
