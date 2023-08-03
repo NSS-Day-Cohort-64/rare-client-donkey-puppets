@@ -6,20 +6,30 @@ export const CreateTag = ({ tags, setTags }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
+  
     // Create the new tag object with the tag name
     const newTag = { label: tagName };
-
+  
     // Send a POST request to add the new tag
     createTag(newTag)
       .then((data) => {
-        setTags([...tags, data])
+        // Find the index to insert the new tag in alphabetical order
+        const insertIndex = tags.findIndex((tag) => tag.label.localeCompare(data.label) > 0);
+  
+        // If insertIndex is -1, it means the new tag should be inserted at the end
+        const updatedTags =
+          insertIndex === -1
+            ? [...tags, data]
+            : [...tags.slice(0, insertIndex), data, ...tags.slice(insertIndex)];
+  
+        setTags(updatedTags);
         setTagName('');
       });
   };
+  
 
   return (
-    <div className="is-flex is-justify-content-flex-end">
+    <div className="is-flex is-justify-content-flex-end m-5">
       <div className="box">
         <h2>Create New Tag</h2>
         <form onSubmit={handleFormSubmit}>
