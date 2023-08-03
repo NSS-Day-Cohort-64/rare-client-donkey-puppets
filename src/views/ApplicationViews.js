@@ -35,6 +35,10 @@ export const ApplicationViews = ({ token, setToken }) => {
   );
 
 };
+
+
+
+
 // import { PostContainer } from "../components/posts/PostContainer"
 // <Route path="/posts" element={<PostContainer />} />
 
