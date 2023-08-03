@@ -12,4 +12,3 @@ export const Tag = ({ tag }) => (
     </section>
     
 )
-    
