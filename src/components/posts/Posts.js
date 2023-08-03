@@ -1,7 +1,16 @@
+
 import React, { useEffect, useState } from "react";
 import { getAllPosts } from "../../managers/PostManager";
 import { Post } from "./Post";
+
+export const Posts = () => {
+
+import { useEffect, useState } from "react"
+import { getAllPosts } from "../../managers/PostManager"
+import {Post} from "./Post"
+import "./posts.css"
 export const Posts = ({ searchTermState }) => {
+
     const [allPosts, setPosts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedAuthor, setSelectedAuthor] = useState("");

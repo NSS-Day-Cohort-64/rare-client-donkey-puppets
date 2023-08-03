@@ -1,0 +1,23 @@
+.comment-section {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.comment {
+    outline: 3px solid grey;
+    margin: 20px;
+}
+
+.write-comment {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+input {
+    width: 25%
+}
+h2 {
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+}

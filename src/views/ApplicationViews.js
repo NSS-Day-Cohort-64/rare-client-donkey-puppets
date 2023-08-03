@@ -12,6 +12,7 @@ import { MyPosts } from "../components/posts/MyPosts";
 import { PostDetails } from "../components/posts/PostDetails";
 import { UserList } from "../components/users/UserList";
 import { UserDetails } from "../components/users/userDetails";
+import { Comments } from "../comments/Comments";
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
@@ -24,7 +25,7 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/newpost" element={< PostForm />} />
         <Route path="/tags" element={ <TagContainer /> } />
         <Route path = "/postDetails/:postId" element= {<PostDetails/>} />
-        <Route path = "/postDetails" element= {<PostDetails/>} />
+        <Route path = "/comments/:postId" element= {<Comments/>} />
         <Route path = "/userDetails/:userId" element= {<UserDetails />} />
         <Route path="/my-posts/" element={ <MyPosts /> } />
         <Route path="my-posts/:postId" element={<MyPosts />} />
@@ -33,10 +34,13 @@ export const ApplicationViews = ({ token, setToken }) => {
       </Routes>
     </>
   );
+
 };
+
 
 
 // import { PostContainer } from "../components/posts/PostContainer"
 // <Route path="/posts" element={<PostContainer />} />
 
 //<Route element={<Posts />} path="/posts" />
+
