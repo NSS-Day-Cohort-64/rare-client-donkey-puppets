@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import { useNavigate, useParams } from "react-router-dom"
 
 export const MyPosts = () => {
     const [posts, setPosts] = useState([]);
-
+    const { postId } = useParams()
+    const navigate = useNavigate()
     const localUser = localStorage.getItem('auth_token')
     const localUserObject = JSON.parse(localUser)
 
@@ -27,9 +28,15 @@ export const MyPosts = () => {
 
     // Function to handle the delete button click
     const handleDeleteButtonClick = (postId) => {
-        // Implement the logic to handle the delete button click
-        // For now, let's just log the post ID to the console
-        
+        // Call the API to delete the post on the server-side
+        fetch(`http://localhost:8088/posts/${postId}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                // If the post is successfully deleted, update the posts list
+                setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+            })
+            .catch((error) => console.error("Error deleting post:", error));
     };
 
 
@@ -45,7 +52,7 @@ export const MyPosts = () => {
                             {post.category.label}
                             {/* Non-functional buttons for edit and delete */}
                             <button onClick={() => handleEditButtonClick(post.id)}>Edit</button>
-                            <button onClick={() => handleDeleteButtonClick(post.id)}>Delete</button>
+                            <button className="footer-button" onClick={() => handleDeleteButtonClick(post.id)}>Delete</button>
                         </div>
                     </li>
                 ))}

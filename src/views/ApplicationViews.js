@@ -25,7 +25,8 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route path="/tags" element={ <TagContainer /> } />
           <Route path="/categories" element={<CategoryList />} /> {/* Use CategoryList component */}
           {/* Add other nested routes here */}
-          <Route path="/my-posts" element={ <MyPosts /> } />
+          <Route path="/my-posts/" element={ <MyPosts /> } />
+          <Route path="my-posts/:postId" element={<MyPosts />} />
           <Route path="/users" element={ <UserList /> } />
 
           <Route path="/tags">
