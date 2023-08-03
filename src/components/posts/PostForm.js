@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import React from "react";
 
@@ -25,13 +25,21 @@ export const PostForm = () => {
         the user to the post list
     */
 
-    
+
 
     const localUser = localStorage.getItem('auth_token')
     const localUserObject = JSON.parse(localUser)
 
-    
+    const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch categories from the API and store them in state
+        fetch("http://localhost:8088/categories")
+            .then((response) => response.json())
+            .then((data) => setCategories(data))
+            .catch((error) => console.error("Error fetching categories:", error));
+    }, []);
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -75,14 +83,17 @@ export const PostForm = () => {
                         <select
                             className="form-control"
                             value={post.category_id}
-                            onChange={(evt) => setPost({ ...post, category_id: parseInt(evt.target.value) })}
+                            onChange={(evt) =>
+                                setPost({ ...post, category_id: parseInt(evt.target.value) })
+                            }
                         >
                             <option value="">Select a Category</option>
-                            <option value="1">News</option>
-                            <option value="2">Technology</option>
-                            <option value="3">Science</option>
-                            <option value="4">Entertainment</option>
-                            <option value="5">Travel</option>
+                            {/* Map over the categories state to generate options */}
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.label}
+                                </option>
+                            ))}
                         </select>
                     </div>
                 </fieldset>

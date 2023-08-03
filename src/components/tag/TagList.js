@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getTags } from "../../managers/tags";
 import { Tag } from "./Tag";
-import "./Tags.css";
+import "./Tags.css"
 
 export const TagList = ({ tags, setTags }) => {
   useEffect(() => {
