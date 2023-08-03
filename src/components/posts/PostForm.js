@@ -1,12 +1,8 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export const PostForm = () => {
-    /*
-        TODO: Add the correct default properties to the
-        initial state object
-    */
     const [post, setPost] = useState({
         user_id: 0,
         category_id: 0,
@@ -14,56 +10,81 @@ export const PostForm = () => {
         publication_date: "",
         image_url: null,
         content: "",
-        approved: true
+        approved: true,
+        tags: [], // Initialize tags as an empty array
+    });
 
+    const localUser = localStorage.getItem("auth_token");
+    const localUserObject = JSON.parse(localUser);
 
-
-
-    })
-    /*
-        TODO: Use the useNavigation() hook so you can redirect
-        the user to the post list
-    */
-
-    
-
-    const localUser = localStorage.getItem('auth_token')
-    const localUserObject = JSON.parse(localUser)
-
-    
+    const [categories, setCategories] = useState([]);
+    const [tags, setTags] = useState([]); // Add state for tags
     const navigate = useNavigate();
 
+
+
+    useEffect(() => {
+        // Fetch categories from the API and store them in state
+        fetch("http://localhost:8088/categories")
+            .then((response) => response.json())
+            .then((data) => setCategories(data))
+            .catch((error) => console.error("Error fetching categories:", error));
+
+        // Fetch tags from the API and store them in state
+        fetch("http://localhost:8088/tags")
+            .then((response) => response.json())
+            .then((data) => setTags(data))
+            .catch((error) => console.error("Error fetching tags:", error));
+    }, []);
+
     const handleSaveButtonClick = (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-
-        // TODO: Create the object to be saved to the API
-
+        // Create the object to be saved to the API
         const postToSendToAPI = {
             category_id: post.category_id,
-            user_id: localUserObject,
+            user_id: localUserObject, // Use localUserObject.id to get the user ID
             title: post.title,
             publication_date: post.publication_date,
             image_url: post.image_url,
             content: post.content,
-            approved: post.approved
-        }
-        // TODO: Perform the fetch() to POST the object to the API
-        return fetch(` http://localhost:8088/posts`, {
+            approved: post.approved,
+            tags: post.tags, // Include selected tags in the post object
+        };
+
+        // Perform the fetch() to POST the object to the API
+        fetch("http://localhost:8088/posts", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(postToSendToAPI)
+            body: JSON.stringify(postToSendToAPI),
         })
-            .then(response => response.json())
-            .then(() => {
-                navigate("/postdetails")
-            })
+            .then((response) => response.json())
+            .then((data) => {
+                // Redirect to the postdetails page with the post ID in the URL path
+                navigate(`/postdetails/${data.id}`);
+            });
+    };
 
-    }
-
-    // 
+    // Function to handle checkbox change for tags
+    const handleTagChange = (tagId) => {
+        // Check if the tagId is already in the post tags
+        const tagIndex = post.tags.indexOf(tagId);
+        if (tagIndex === -1) {
+            // If the tagId is not in the post tags, add it
+            setPost((prevPost) => ({
+                ...prevPost,
+                tags: [...prevPost.tags, tagId],
+            }));
+        } else {
+            // If the tagId is already in the post tags, remove it
+            setPost((prevPost) => ({
+                ...prevPost,
+                tags: prevPost.tags.filter((tag) => tag !== tagId),
+            }));
+        }
+    };
 
     return (
         <>
@@ -71,20 +92,36 @@ export const PostForm = () => {
                 <h2 className="postForm__title">New Post</h2>
                 <fieldset>
                     <div className="form-group">
-                        <label htmlFor="description"></label>
+                        <label htmlFor="description">Category:</label>
                         <select
                             className="form-control"
                             value={post.category_id}
                             onChange={(evt) => setPost({ ...post, category_id: parseInt(evt.target.value) })}
                         >
                             <option value="">Select a Category</option>
-                            <option value="1">News</option>
-                            <option value="2">Technology</option>
-                            <option value="3">Science</option>
-                            <option value="4">Entertainment</option>
-                            <option value="5">Travel</option>
+                            {/* Map over the categories state to generate options */}
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.label}
+                                </option>
+                            ))}
                         </select>
                     </div>
+                </fieldset>
+                {/* Tags checkboxes */}
+                <fieldset>
+                    <legend>Tags:</legend>
+                    {tags.map((tag) => (
+                        <label key={tag.id}>
+                            <input
+                                type="checkbox"
+                                value={tag.id}
+                                checked={post.tags.includes(tag.id)}
+                                onChange={() => handleTagChange(tag.id)}
+                            />
+                            {tag.label}
+                        </label>
+                    ))}
                 </fieldset>
                 <fieldset>
                     <input
