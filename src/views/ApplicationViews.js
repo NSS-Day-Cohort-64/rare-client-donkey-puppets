@@ -23,10 +23,11 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route element={<Authorized token={token} />}>
         <Route path="/categories" element={<CategoryList />} /> 
-        <Route element = {<Posts />} path="/posts"/>
+        <Route path="/posts" element={<PostContainer />} />
         <Route path="/newpost" element={< PostForm />} />
         <Route path="/tags" element={ <TagContainer /> } />
         <Route path = "/postDetails/:postId" element= {<PostDetails/>} />
+        <Route path = "/comments/:postId" element= {<Comments/>} />
         <Route path = "/userDetails/:userId" element= {<UserDetails />} />
         <Route path="/my-posts/" element={ <MyPosts /> } />
           <Route path="my-posts/:postId" element={<MyPosts />} />
@@ -37,11 +38,3 @@ export const ApplicationViews = ({ token, setToken }) => {
   );
 
 };
-
-
-
-
-// import { PostContainer } from "../components/posts/PostContainer"
-// <Route path="/posts" element={<PostContainer />} />
-
-//<Route element={<Posts />} path="/posts" />
