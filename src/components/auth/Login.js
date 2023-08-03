@@ -17,15 +17,17 @@ export const Login = ({ setToken }) => {
     }
 
     loginUser(user).then(res => {
-      if ("valid" in res && res.valid) {
-        setToken(res.token)
-        navigate("/")
-      }
-      else {
-        setisUnsuccessful(true)
+      const data = JSON.parse(res); // Parse the JSON response into an object
+      if ("valid" in data && data.valid) {
+        setToken(data.token);
+        navigate("/");
+      } else {
+        setisUnsuccessful(true);
       }
     })
   }
+
+
 
   return (
     <section className="columns is-centered">

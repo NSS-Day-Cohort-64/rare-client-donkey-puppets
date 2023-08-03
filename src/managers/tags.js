@@ -4,26 +4,11 @@ export const getTags = () => {
 }
 export const createTag = (newTag) => {
     return fetch("http://localhost:8088/tags", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTag),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTag),
     })
-    .then((response) => response.json());
-  };
-  return fetch("http://localhost:8088/tags")
-    .then((res) => res.json());
+        .then((response) => response.json());
 };
-
-export const createTag = (newTag) => {
-  return fetch("http://localhost:8088/tags", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newTag),
-  })
-  .then((response) => response.json());
-};
-
