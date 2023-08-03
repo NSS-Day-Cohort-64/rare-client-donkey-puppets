@@ -1,31 +1,40 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllPosts } from "../../managers/PostManager";
 import { Post } from "./Post";
 
 export const Posts = () => {
     const [allPosts, setPosts] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(""); // State to store the selected category
-    const [categories, setCategories] = useState([]); // State to store the available categories
+    const [selectedCategory, setSelectedCategory] = useState("");
+    const [selectedAuthor, setSelectedAuthor] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [authors, setAuthors] = useState([]);
 
     useEffect(() => {
         getAllPosts().then((data) => {
             setPosts(data);
-            // Extract unique categories from the posts
             const uniqueCategories = [...new Set(data.map((post) => post.category.label))];
             setCategories(uniqueCategories);
+
+            const uniqueAuthors = [...new Set(data.map((post) => `${post.user.first_name} ${post.user.last_name}`))];
+            setAuthors(uniqueAuthors);
         });
     }, []);
 
-    // Function to handle category selection change
     const handleCategoryChange = (event) => {
         const selectedCategory = event.target.value;
         setSelectedCategory(selectedCategory);
     };
 
-    // Filter the posts based on the selected category
-    const filteredPosts = selectedCategory
-        ? allPosts.filter((post) => post.category.label === selectedCategory)
-        : allPosts;
+    const handleAuthorChange = (event) => {
+        const selectedAuthor = event.target.value;
+        setSelectedAuthor(selectedAuthor);
+    };
+
+    const filteredPosts = allPosts.filter((post) => {
+        const categoryMatch = selectedCategory ? post.category.label === selectedCategory : true;
+        const authorMatch = selectedAuthor ? `${post.user.first_name} ${post.user.last_name}` === selectedAuthor : true;
+        return categoryMatch && authorMatch;
+    });
 
     return (
         <>
@@ -40,6 +49,22 @@ export const Posts = () => {
                     {categories.map((category) => (
                         <option key={category} value={category}>
                             {category}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div>
+                <label htmlFor="author">Search by Author:</label>
+                <select
+                    id="author"
+                    onChange={handleAuthorChange}
+                    value={selectedAuthor}
+                >
+                    <option value="">All</option>
+                    {authors.map((author) => (
+                        <option key={author} value={author}>
+                            {author}
                         </option>
                     ))}
                 </select>
