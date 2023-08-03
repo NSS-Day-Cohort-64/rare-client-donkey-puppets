@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { getAllPosts } from "../../managers/PostManager";
 import { Post } from "./Post";
+import "./posts.css"
 
-export const Posts = () => {
+
+export const Posts = ({ searchTermState }) => {
+
     const [allPosts, setPosts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedAuthor, setSelectedAuthor] = useState("");
     const [categories, setCategories] = useState([]);
     const [authors, setAuthors] = useState([]);
+    const [filteredAllPosts, setFilteredAllPosts] = useState([])
+
 
     useEffect(() => {
         getAllPosts().then((data) => {
