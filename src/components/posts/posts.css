@@ -5,3 +5,9 @@
     outline: 3px solid black;
     background-color: rgb(212, 228, 234)
 }
+.postDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
