@@ -32,6 +32,9 @@ export const ApplicationViews = ({ token, setToken }) => {
       </Routes>
     </>
   );
+
+};
+
 };
 
 
@@ -39,3 +42,4 @@ export const ApplicationViews = ({ token, setToken }) => {
 // <Route path="/posts" element={<PostContainer />} />
 
 //<Route element={<Posts />} path="/posts" />
+
