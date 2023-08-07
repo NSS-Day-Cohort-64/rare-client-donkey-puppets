@@ -13,6 +13,7 @@ import { UserList } from "../components/users/UserList";
 import { UserDetails } from "../components/users/userDetails";
 import { Comments } from "../comments/Comments";
 import { SubscribedPosts } from "../components/subscriptions/SubscribedPosts";
+
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
