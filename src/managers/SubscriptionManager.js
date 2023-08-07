@@ -19,6 +19,7 @@ export const deleteSubscription = async (id) => {
   fetch(`http://localhost:8088/subscriptions/${id}`, {
     method: "DELETE"
   })
+}
 
 export const GetSubscribedPosts = () => {
     const localUser = localStorage.getItem('auth_token')
