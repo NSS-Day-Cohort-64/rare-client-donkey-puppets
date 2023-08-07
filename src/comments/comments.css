@@ -21,3 +21,11 @@ h2 {
     justify-content: center;
     font-style: italic;
 }
+
+.trash-icon {
+    width: 15px;
+}
+
+button {
+    padding: 3px;
+}
