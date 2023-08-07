@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react"
-import { getAllPosts } from "../../managers/PostManager"
-import {Post} from "./Post"
+
+import React, { useEffect, useState } from "react";
+import { getAllPosts } from "../../managers/PostManager";
+import { Post } from "./Post";
 import "./posts.css"
+
+
 export const Posts = ({ searchTermState }) => {
     const [allPosts, setPosts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -10,7 +13,6 @@ export const Posts = ({ searchTermState }) => {
     const [authors, setAuthors] = useState([]);
     const [filteredAllPosts, setFilteredAllPosts] = useState([])
 
-    
 
     useEffect(() => {
         getAllPosts().then((data) => {

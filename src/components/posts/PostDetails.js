@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import"./posts.css"
+
 export const PostDetails = () => {
     const [post, setPost] = useState({})
     const { postId } = useParams();

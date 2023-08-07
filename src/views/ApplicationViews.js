@@ -5,7 +5,6 @@ import { Register } from "../components/auth/Register";
 import { Authorized } from "./Authorized";
 import CategoryList from "../components/categories/CategoryList";
 import { TagContainer } from "../components/tag/TagContainer";
-// import { Posts } from "../components/posts/Posts"
 import { PostContainer } from "../components/posts/PostContainer"
 import { PostForm } from "../components/posts/PostForm"
 import { MyPosts } from "../components/posts/MyPosts";
@@ -46,4 +45,3 @@ export const ApplicationViews = ({ token, setToken }) => {
 // <Route path="/posts" element={<PostContainer />} />
 
 //<Route element={<Posts />} path="/posts" />
-
