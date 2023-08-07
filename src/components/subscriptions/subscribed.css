@@ -1,0 +1,11 @@
+.subscribedPostsList {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.list-item {
+    margin: 5px;
+    outline: 3px solid grey;
+}
