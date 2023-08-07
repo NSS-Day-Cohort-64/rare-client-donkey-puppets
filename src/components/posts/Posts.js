@@ -6,7 +6,6 @@ import "./posts.css"
 
 
 export const Posts = ({ searchTermState }) => {
-
     const [allPosts, setPosts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedAuthor, setSelectedAuthor] = useState("");

@@ -12,11 +12,13 @@ import { PostDetails } from "../components/posts/PostDetails";
 import { UserList } from "../components/users/UserList";
 import { UserDetails } from "../components/users/userDetails";
 import { Comments } from "../comments/Comments";
+import { SubscribedPosts } from "../components/subscriptions/SubscribedPosts";
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
     <>
       <Routes>
+        <Route path="/" element={< SubscribedPosts />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route element={<Authorized token={token} />}>
